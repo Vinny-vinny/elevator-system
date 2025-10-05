@@ -78,14 +78,18 @@ npm run dev
 npm test
 ```
 📡 API Endpoints
+
 🏢 External Call Request
 
 POST /api/elevator/call
+
 Request Body:
+```
 {
   "floor": 3,
   "direction": "up"
 }   
+```
 
 Sample Response:
 ```
@@ -104,9 +108,12 @@ Sample Response:
 }
 }
 }
+```
 
 📍 Internal Call Request
+
 POST /api/elevator/request
+
 Request Body:
 ```
 {
@@ -136,6 +143,7 @@ Sample Response:
 }
 ```
 📊 Get Elevator Status
+
 GET /api/elevator/status
 
 Sample Response:
