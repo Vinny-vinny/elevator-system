@@ -6,46 +6,56 @@ An intelligent **Elevator Simulation API** built with **Node.js**, **Express**, 
 
 ## 🧩 Features
 
-- Handle **external** and **internal** elevator calls
-- Retrieve **real-time elevator statuses**
-- Simulate **asynchronous elevator movement**
-- Log all elevator actions and SQL queries
-- Use **express-validator** for request validation
-- Fully tested with **Mocha**, **Chai**, and **Sinon**
+- 🏢 Handle **external** and **internal** elevator calls
+- 📡 Retrieve **real-time elevator statuses**
+- ⚙️ Simulate **asynchronous elevator movement**
+- 🧾 Log all elevator actions and SQL queries
+- ✅ Validate inputs using **express-validator**
+- 🧪 Fully tested with **Mocha**, **Chai**, and **Sinon**
 
 ---
 
 ## ⚙️ Tech Stack
 
-- **Node.js 20+** – JavaScript runtime
-- **Express.js** – REST API framework
-- **Sequelize ORM** – Database layer
-- **MYSQL** – Database
-- **Mocha + Chai + Sinon** – Testing
-- **dotenv** – Environment configuration
-- **morgan + winston** – Logging utilities
-
+| Layer | Technology |
+|-------|-------------|
+| Runtime | **Node.js 20+** |
+| Framework | **Express.js** |
+| ORM | **Sequelize** |
+| Database | **MySQL** |
+| Testing | **Mocha**, **Chai**, **Sinon** |
+| Config | **dotenv** |
+| Logging | **morgan**, **winston** |
 
 ---
 
-## ⚙️ Installation
+## 🛠️ Installation & Setup
 
 ### 1️⃣ Prerequisites
 
-- [Node.js 20 or above](https://nodejs.org/en/download)
-- npm (comes with Node.js)
-- MYSQL installed 
+Ensure you have:
+- [Node.js 20+](https://nodejs.org/en/download)
+- **npm** (comes with Node)
+- **MySQL** installed and running
 
-### 2️⃣ Clone the repository
+---
+
+### 2️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/Vinny-vinny/elevator-system.git
 cd elevator-system
 
- 3️⃣ Install dependencies
-npm install
+```
+### 3️⃣ Install Dependencies
 
- 4️⃣ Create a .env file
+```bash
+npm install
+```
+4️⃣ Environment Configuration
+
+Create a .env file in the project root:
+```
 DB_DIALECT=mysql
 DB_HOST=localhost
 DB_PORT=3306
@@ -54,93 +64,97 @@ DB_USER=root
 DB_PASSWORD=
 PORT=9000
 
-5️⃣ Run database migrations
+```
+5️⃣ Run Database Migrations
+```
 npx sequelize-cli db:migrate
-
+```
 🚀 Running the Application
+```
 npm run dev
-
+```
 🧪 Running Tests
+```
 npm test
-
+```
 📡 API Endpoints
 🏢 External Call Request
 
 POST /api/elevator/call
-
-Body:
+Request Body:
 {
-  "requestedFloor": 3,
-  "direction": "UP"
-}
-
-Response:
+  "floor": 3,
+  "direction": "up"
+}   
+```
+Sample Response:
+```
 {
-    "success": true,
-    "message": "External Call Request Successfully Processed.",
-    "status": {
-        "message": "Elevator 2 is moving to floor 3.",
-        "status": {
-            "id": 2,
-            "floor": 3,
-            "direction": "up",
-            "doorState": "closed",
-            "isMoving": true,
-            "queue": [3]
-        }
-    }
+"success": true,
+"message": "External Call Request Successfully Processed.",
+"status": {
+"message": "Elevator 2 is moving to floor 3.",
+"status": {
+"id": 2,
+"floor": 3,
+"direction": "up",
+"doorState": "closed",
+"isMoving": true,
+"queue": [3]
 }
-
-🕹️ Internal Elevator Call
-
-POST /api/elevator/call
-
-Body:
+}
+}
+```
+📍 Internal Call Request
+POST /api/elevator/request
+Request Body:
+```
 {
-  "elevatorId": 1,
-  "requestedFloor": 7,
-  "internal": true
-  "direction": "UP"
+"elevatorId": 1,
+"requestedFloor": 7,
+"internal": true,
+"direction": "UP"
 }
-
-Response:
+```
+Sample Response:
+```
 {
-    "success": true,
-    "message": "Internal Call Request Successfully Processed.",
-    "status": {
-        "message": "Elevator 1 has arrived at floor 7. Please exit.",
-        "status": {
-            "id": 1,
-            "floor": 7,
-            "direction": "idle",
-            "doorState": "closed",
-            "isMoving": false,
-            "queue": []
-        }
-    }
+"success": true,
+"message": "Internal Call Request Successfully Processed.",
+"status": {
+"message": "Elevator 1 has arrived at floor 7. Please exit.",
+"status": {
+"id": 1,
+"floor": 7,
+"direction": "idle",
+"doorState": "closed",
+"isMoving": false,
+"queue": []
 }
-
+}
+}
+```
 📊 Get Elevator Status
-
 GET /api/elevator/status
 
-Response:
+Sample Response:
+```
 [
-    {
-        "id": 1,
-        "floor": 3,
-        "direction": "idle",
-        "doorState": "closed",
-        "isMoving": false,
-        "queue": []
-    },
-    {
-        "id": 2,
-        "floor": 7,
-        "direction": "idle",
-        "doorState": "closed",
-        "isMoving": false,
-        "queue": []
-    }
+{
+"id": 1,
+"floor": 3,
+"direction": "idle",
+"doorState": "closed",
+"isMoving": false,
+"queue": []
+},
+{
+"id": 2,
+"floor": 7,
+"direction": "idle",
+"doorState": "closed",
+"isMoving": false,
+"queue": []
+}
 ]
-
+```
