@@ -86,7 +86,7 @@ Request Body:
   "floor": 3,
   "direction": "up"
 }   
-```
+
 Sample Response:
 ```
 {
@@ -104,7 +104,7 @@ Sample Response:
 }
 }
 }
-```
+
 📍 Internal Call Request
 POST /api/elevator/request
 Request Body:
@@ -116,6 +116,7 @@ Request Body:
 "direction": "UP"
 }
 ```
+
 Sample Response:
 ```
 {
